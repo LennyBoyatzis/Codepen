@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
+
+html {
+	background: radial-gradient(#000, #111);
+	color: white;
+	overflow: hidden;
+	height: 100%;
+	user-select: none;
+}
+
+.error {
+	text-align: center;
+	font-size: 65px;
+	text-transform: uppercase;
+	font-weight: 100;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	height: 60px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -60px;
+	right: 0;
+	overflow: default;
+	animation: noise 2s linear infinite;
+}
+
+.error:after {
+	content: 'Artificial Intelligence';
+	font-family: 'Roboto', sans-serif;
+	font-size: 65px;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	color: green;
+	animation: noise-1 0.5s linear infinite;
+}
+
+.error:before {
+	content: 'Artificial Intelligence';
+	font-family: 'Roboto', sans-serif;
+	font-size: 65px;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	color: red;
+	animation: noise-2 0.5s linear infinite;
+}
+
+@keyframes noise-1 {
+  0%, 20%, 40%, 60%, 70%, 90% {opacity: 0;}
+  10% {opacity: .1;}
+  50% {opacity: .5; left: -10px;}
+  80% {opacity: .3;}
+  100% {opacity: .6; left: 0px;}
+}
+
+@keyframes noise-2 {
+  0%, 20%, 40%, 60%, 70%, 90% {opacity: 0;}
+  10% {opacity: .1;}
+  50% {opacity: .5; left: 10px;}
+  80% {opacity: .3;}
+  100% {opacity: .6; left: 0px;}
+}
+
+@keyframes noise {
+  0%, 3%, 5%, 42%, 44%, 100% {opacity: 1; transform: scaleY(1);}
+  4.3% {opacity: 1; transform: scaleY(2.0);}
+  43% {opacity: 1; transform: scaleX(1.5);}
+}
