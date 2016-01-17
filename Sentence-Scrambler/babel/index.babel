@@ -1,0 +1,83 @@
+const CHARS = ['!','$','+','<','%','=','&',',','.','~','(',')','*','@','#', ':', '|', '/'] 
+
+const LetterScrambler = React.createClass({
+  
+  getInitialState() {
+    return {
+      letter: this.props.letter,
+      noOfScrambles: 4
+    }
+  },
+  
+  scrambleLetter() {
+    if (this.state.noOfScrambles > 0) {
+      this.setState({
+        letter: CHARS[Math.floor(Math.random()*CHARS.length)],
+        noOfScrambles: this.state.noOfScrambles - 1
+      })
+      setTimeout(this.scrambleLetter, 100)     
+    } 
+  },
+  
+  componentWillReceiveProps(props) {
+    if (props.scrambling) {
+       this.setState({
+        noOfScrambles: 4
+      }, () => {
+        this.scrambleLetter()         
+      })
+    } else {
+        return this.setState({
+          letter: this.props.letter
+        })
+    }
+
+  },
+  
+  render() {
+    console.log(`this.state.letter ${this.state.letter}`)
+    return (
+      <span>{this.state.letter}</span>
+    )
+  }
+})
+
+const SentenceScrambler = React.createClass({
+  
+  getInitialState() {
+    return {
+      scrambling: false
+    }
+  },
+  
+  onHover() {
+    return this.setState({
+      scrambling: true
+    })
+  },
+  
+  onMouseOut() {
+    return this.setState({
+      scrambling: false
+    })
+  },
+  
+  render() {
+    return (
+      <div className="scrambler" onMouseEnter={this.onHover} onMouseLeave={this.onMouseOut}>
+        <p>
+          { 
+            this.props.sentence.split('').map((i) => {
+              return (
+                <LetterScrambler scrambling={this.state.scrambling} letter={i} />
+              )
+            })
+          }
+        </p>
+      </div>
+    )
+  }
+})
+
+React.render(<SentenceScrambler sentence="Digital World" />, document.querySelector('body'));
+
